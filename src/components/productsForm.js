@@ -9,6 +9,7 @@ export default function ProductForm({ product, onSave, onCancel }) {
     name: '',
     price: '',
     description: '',
+    imageUrl: '', // novo campo
   });
 
   useEffect(() => {
@@ -17,9 +18,10 @@ export default function ProductForm({ product, onSave, onCancel }) {
         name: product.name,
         price: product.price,
         description: product.description || '',
+        imageUrl: product.imageUrl || '', // preenche a URL da imagem se houver
       });
     } else {
-      setFormData({ name: '', price: '', description: '' });
+      setFormData({ name: '', price: '', description: '', imageUrl: '' });
     }
   }, [product]);
 
@@ -34,11 +36,14 @@ export default function ProductForm({ product, onSave, onCancel }) {
       ...formData,
       price: parseFloat(formData.price),
     });
-    setFormData({ name: '', price: '', description: '' });
+    setFormData({ name: '', price: '', description: '', imageUrl: '' });
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+    >
       <input
         type="text"
         name="name"
@@ -63,9 +68,20 @@ export default function ProductForm({ product, onSave, onCancel }) {
         value={formData.description}
         onChange={handleChange}
       />
+      <input
+        type="text"
+        name="imageUrl"
+        placeholder="URL da imagem"
+        value={formData.imageUrl}
+        onChange={handleChange}
+      />
       <div style={{ display: 'flex', gap: '0.5rem' }}>
         <button type="submit">Salvar</button>
-        {onCancel && <button type="button" onClick={onCancel}>Cancelar</button>}
+        {onCancel && (
+          <button type="button" onClick={onCancel}>
+            Cancelar
+          </button>
+        )}
       </div>
     </form>
   );

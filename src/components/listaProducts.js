@@ -38,35 +38,53 @@ export default function ProductList() {
     }
   };
 
- return (
-  <div className="products-grid">
-    {/* Card para criar novo produto */}
-    <div className="card">
-      <h4>Novo Produto</h4>
-      <ProductForm onSave={handleCreate} />
-    </div>
-
-    {products.map((product) => (
-      <div key={product.id} className="card">
-        {editingId === product.id ? (
-          <ProductForm
-            product={product}
-            onSave={handleUpdate}
-            onCancel={() => setEditingId(null)}
-          />
-        ) : (
-          <>
-            <h4>{product.name}</h4>
-            <p>R$ {product.price.toFixed(2)}</p>
-            <p>{product.description}</p>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <button className="edit" onClick={() => setEditingId(product.id)}>Editar</button>
-              <button className="delete" onClick={() => handleDelete(product.id)}>Deletar</button>
-            </div>
-          </>
-        )}
+  return (
+    <div className="products-grid">
+      {/* Card para criar novo produto */}
+      <div className="card">
+        <h4>Novo Produto</h4>
+        <ProductForm onSave={handleCreate} />
       </div>
-    ))}
-  </div>
-);
+
+      {products.map((product) => (
+        <div key={product.id} className="card">
+          {editingId === product.id ? (
+            <ProductForm
+              product={product}
+              onSave={handleUpdate}
+              onCancel={() => setEditingId(null)}
+            />
+          ) : (
+            <>
+              {/* Exibe imagem se houver URL */}
+              {product.imageUrl && (
+                <img
+                  src={product.imageUrl}
+                  alt={product.name}
+                  style={{
+                    width: '100%',
+                    height: '150px',
+                    objectFit: 'cover',
+                    borderRadius: '12px',
+                    marginBottom: '0.5rem',
+                  }}
+                />
+              )}
+              <h4>{product.name}</h4>
+              <p>R$ {product.price.toFixed(2)}</p>
+              <p>{product.description}</p>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button className="edit" onClick={() => setEditingId(product.id)}>
+                  Editar
+                </button>
+                <button className="delete" onClick={() => handleDelete(product.id)}>
+                  Deletar
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      ))}
+    </div>
+  );
 }
