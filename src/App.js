@@ -1,11 +1,12 @@
 import React from 'react';
-import ProductList from './components/listaProducts';
+import ProductList from './components/cardsProducts/listaProducts';
 import './App.css'; // Importa o CSS
+import Header from './components/structure/header/header';
 
 function App() {
   return (
     <div>
-      <h1>Mini E-commerce</h1>
+      <Header/>
       <ProductList />
     </div>
   );

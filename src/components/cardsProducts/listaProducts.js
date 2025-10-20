@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchProducts, createProduct, updateProduct, deleteProduct } from '../api';
+import { fetchProducts, createProduct, updateProduct, deleteProduct } from '../../api';
 import ProductForm from './productsForm';
 
 /**
