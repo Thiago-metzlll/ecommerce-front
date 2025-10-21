@@ -1,8 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../../../pages/Home";
-import PromoPage from '../../../pages/UsersPage'
-import UsersPage from "../../../pages/UsersPage";
+import SupliersPage from "../../../pages/SupliersPage";
 
 export default function Main() {
   return (
