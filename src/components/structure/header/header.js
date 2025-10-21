@@ -1,4 +1,4 @@
-import NavButton from "../../navBotton/navBotton";
+import NavButton from "../../navBotton/NavBotton";
 import './Header.css' 
 
 export default function Header() {
@@ -8,8 +8,7 @@ export default function Header() {
 
       <nav className="nav">
         <NavButton to="/">Home</NavButton>
-        <NavButton to="/about">Sobre</NavButton>
-        <NavButton to="/contact">Contato</NavButton>
+        <NavButton to="">Promoções</NavButton>
       </nav>
     </header>
   );
