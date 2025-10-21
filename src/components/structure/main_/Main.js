@@ -9,7 +9,7 @@ export default function Main() {
     <main className="main-content">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/users" element={< UsersPage/>} />
+        <Route path="/fornecedores" element={< SupliersPage/>} />
       </Routes>
     </main>
   );
