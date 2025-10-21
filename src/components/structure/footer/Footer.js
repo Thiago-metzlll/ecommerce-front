@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="footer">
       <p>© 2025 - Minha Aplicação</p>
       <p className="footer-links">
-        <a href="/">Início</a> | <a href="/promocoes">Promoções</a>
+        <a href="/">Início</a> | <a href="/fornecedores">Parceiros</a>
       </p>
     </footer>
   );
