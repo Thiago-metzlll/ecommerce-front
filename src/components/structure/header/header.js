@@ -8,7 +8,7 @@ export default function Header() {
 
       <nav className="nav">
         <NavButton to="/">Home</NavButton>
-        <NavButton to="">Promoções</NavButton>
+        <NavButton to="/fornecedores">Fornecedores</NavButton>
       </nav>
     </header>
   );

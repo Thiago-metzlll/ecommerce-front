@@ -1,0 +1,11 @@
+.suppliers-page {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.suppliers-page h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
