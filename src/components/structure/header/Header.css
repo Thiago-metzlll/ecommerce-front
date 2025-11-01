@@ -1,49 +1,64 @@
-/* ===== Layout geral ===== */
+/* ===== Header estilo e-commerce ===== */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(59, 57, 57, 0.425);
-  color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff; /* fundo neutro */
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* sombra suave */
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
+/* Logo */
 .logo {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
   cursor: pointer;
-  color: #ffffff;
+  color: #ff6f61; /* cor de destaque */
 }
 
-/* ===== Navegação ===== */
+/* Navegação */
 .nav {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
-/* ===== Botões de navegação ===== */
+/* Botões de navegação */
 .nav-button {
   background-color: transparent;
   border: 2px solid transparent;
-  color: #ffffff;
+  color: #333;
   font-size: 1rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: all 0.2s ease-in-out;
 }
 
 .nav-button:hover {
-  border-color: #61dafb;
-  color: #61dafb;
+  border-color: #ff6f61;
+  color: #ff6f61;
   transform: translateY(-2px);
 }
 
-/* ===== Responsividade ===== */
+/* Botão especial do carrinho / CTA */
+.nav-button.cta {
+  background-color: #ff6f61;
+  color: #fff;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.nav-button.cta:hover {
+  background-color: #e65b50;
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* Responsividade */
 @media (max-width: 600px) {
   .header {
     flex-direction: column;
@@ -53,6 +68,7 @@
 
   .nav {
     flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .nav-button {
@@ -61,10 +77,10 @@
   }
 }
 
-/* ===== Área principal ===== */
+/* Área principal */
 .main {
   padding: 2rem;
   min-height: calc(100vh - 80px);
-  background-color: #f9f9f9;
+  background-color: #f5f5f5; /* mesmo fundo do e-commerce */
   color: #333;
 }
