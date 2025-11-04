@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AuthPage.css'
+import './AuthPage.css';
 
-/**
- * Página pública de Login
- * - Permite que o usuário insira email e senha
- * - Valida os campos e simula autenticação
- * - Redireciona o usuário após o login
- */
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,23 +9,34 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      setError('');
+  try {
+    setError('');
 
-      // Simulação de autenticação (substitua por API real)
-      if (email === 'admin@example.com' && password === '123456') {
-        alert('Login bem-sucedido!');
-        navigate('/dashboard'); // Redireciona para a área interna
-      } else {
-        setError('Email ou senha incorretos.');
-      }
-    } catch (err) {
-      console.error('Erro ao fazer login:', err);
-      setError('Erro inesperado. Tente novamente.');
+    const response = await fetch('http://localhost:3000/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Credenciais inválidas');
     }
-  };
+
+    // Guarda o token JWT e usuário no localStorage
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(data.user));
+
+    alert('Login bem-sucedido!');
+    navigate('/dashboard'); // rota protegida
+  } catch (err) {
+    console.error('Erro ao fazer login:', err);
+    setError(err.message || 'Email ou senha incorretos.');
+  }
+};
 
   return (
     <div className="login-container">
@@ -64,19 +69,7 @@ export default function LoginPage() {
 
         {error && <p className="error-message">{error}</p>}
 
-        <button type="submit" className="login-button">
-          Entrar
-        </button>
-
-        <p className="register-hint">
-          Não tem conta?{' '}
-          <span
-            className="register-link"
-            onClick={() => navigate('/register')}
-          >
-            Cadastre-se
-          </span>
-        </p>
+        <button type="submit" className="login-button">Entrar</button>
       </form>
     </div>
   );
