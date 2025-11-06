@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { createSupplier } from "../../apis/suppliersApi";
+import { createSupplier } from "../../../apis/suppliersApi";
+import './SupplierForm.css'
 
 export default function SupplierForm({ onAdd }) {
   const [form, setForm] = useState({ name: "", email: "", city: "" });

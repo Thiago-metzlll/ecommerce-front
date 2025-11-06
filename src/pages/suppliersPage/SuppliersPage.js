@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SupplierForm from "../../components/componentSuppliers/SupplierForm"
+import SupplierForm from "../../components/componentSuppliers/supplierform/SupplierForm"
 import SuppliersList from "../../components/componentSuppliers/SupplierList";
 import { fetchSuppliers } from "../../apis/suppliersApi";
 import "./SuppliersPage.css";
