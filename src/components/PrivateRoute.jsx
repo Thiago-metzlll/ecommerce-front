@@ -1,14 +1,11 @@
 // src/components/PrivateRoute.jsx
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+// src/components/PrivateRoute.jsx
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth.js";
 
 export default function PrivateRoute({ children }) {
-  const token = localStorage.getItem('token');
+  const { isAuthenticated } = useAuth();
 
-  if (!token) {
-    // Redireciona para login se não tiver token
-    return <Navigate to="/loginpage" replace />;
-  }
-
-  return children;
+  return isAuthenticated ? children : <Navigate to="/loginpage" replace />;
 }
