@@ -1,31 +1,19 @@
-// authApi.js
 const API_URL = 'http://localhost:3000/auth';
 
-/**
- * LOGIN
- * Envia email e senha para o backend.
- * O backend cria cookie HttpOnly com o token.
- * Não precisamos mais armazenar token no frontend.
- */
 export async function loginUser(email, password) {
   try {
     const res = await fetch(`${API_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
-      credentials: 'include', // importante: envia cookies automaticamente
+      credentials: 'include',
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Erro no login');
-    }
-
-    // Retorna apenas dados do usuário (token já está no cookie)
-    return res.json();
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || 'Erro no login');
+    return data;
   } catch (error) {
-    console.error(error);
+    console.error('Login falhou:', error);
     throw error;
   }
 }
-

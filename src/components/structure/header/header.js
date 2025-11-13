@@ -4,7 +4,7 @@ import './Header.css'
 export default function Header() {
   return (
     <header className="header">
-      <h1 className="logo"> Senac</h1>
+      <h1 className="logo"> Pirataria do Bryam</h1>
 
       <nav className="nav">
         <NavButton to="/">Home</NavButton>
