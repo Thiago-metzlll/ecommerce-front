@@ -11,10 +11,10 @@ export default function Main() {
   return (
     <main className="main-content">
       <Routes>
+        {/* Rotas públicas */}
         <Route path="/" element={<Home />} />
         <Route path="/loginpage" element={<AuthPage />} />
         <Route path="/register" element={<RegisterPage />} />
-
 
         {/* Rotas privadas */}
         <Route
