@@ -1,41 +1,47 @@
 import React, { createContext, useState, useEffect } from "react";
 import { loginUser, logoutUser, getProfile } from "../apis/auth/index";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext({
+  user: null,
+  isAuthenticated: false,
+  loading: true,
+  login: async () => {},
+  logout: async () => {},
+});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Inicializa usuário logado
   const fetchUser = async () => {
     try {
       const data = await getProfile();
       setUser(data.user);
-    } catch {
+    } catch (err) {
+      console.warn("Erro ao buscar perfil:", err);
       setUser(null);
     } finally {
       setLoading(false);
     }
   };
 
-  // Login
   const login = async (email, password) => {
     try {
-      const data = await loginUser(email, password);
-      setUser(data.user);
+      await loginUser(email, password);
+      await fetchUser(); // garante sincronização
     } catch (err) {
+      console.error("Erro no login:", err);
       throw err;
     }
   };
 
-  // Logout
   const logout = async () => {
     try {
       await logoutUser();
-      setUser(null);
     } catch (err) {
-      console.error(err);
+      console.error("Erro no logout:", err);
+    } finally {
+      setUser(null);
     }
   };
 

@@ -7,7 +7,7 @@ export async function logoutUser() {
       credentials: 'include',
     });
 
-    const data = await res.json();
+    const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.message || 'Erro no logout');
     return data;
   } catch (error) {

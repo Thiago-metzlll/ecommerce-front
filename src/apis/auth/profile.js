@@ -7,8 +7,12 @@ export async function getProfile() {
       credentials: 'include',
     });
 
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || 'Erro ao buscar perfil');
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      console.error('Erro do backend:', data);
+      throw new Error(data.message || `Erro ${res.status}: ${res.statusText}`);
+    }
+
     return data;
   } catch (error) {
     console.error('Falha ao buscar perfil:', error);
